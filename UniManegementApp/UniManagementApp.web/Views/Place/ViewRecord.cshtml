@@ -1,0 +1,44 @@
+﻿@model List<UniManagementApp.entities.Place>
+
+@{
+    ViewBag.Title = "ViewHouseApply";
+}
+
+<h2>View House Apply</h2>
+
+<body>
+    <div class="mainContainer">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>CNIC</th>
+                    <th>Name</th>
+                    <th>BPS</th>
+                    <th>Department</th>
+                    <th>Domicile</th>
+                    <th>Mobile No</th>
+                    <th>Job Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var record in Model)
+                {
+                <tr>
+
+                    <td>@record.CNIC</td>
+                    <td>@record.Name</td>
+                    <td>@record.ScaleNo.Id</td>
+                    <td>@record.Department.Name</td>
+                    <td>@record.Domicile.Name</td>
+                    <td>@record.MobileNo</td>
+                    <td>@record.Status.Name</td>
+                    <td>
+                        @Html.ActionLink("Edit", "ViewDetail", "Place", new { cnic = record.CNIC }, null)
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>

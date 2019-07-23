@@ -1,0 +1,62 @@
+﻿@model List<UniManagementApp.entities.Place>
+@{
+    ViewBag.Title = "Merit";
+}
+
+@*<h2>Merit</h2>*@
+
+<body>
+    <div align="center" class="mainContainer">
+        <table align="center" id="meritTableId" class="table table-bordered">
+            <thead>
+                <tr>
+                    <th width="2%">Sr #</th>
+                    <th width="8%">Name</th>
+                    <th width="8%">Designation & Department</th>
+                    <th width="3%">BPS</th>
+                    <th width="8%">Date of Appointment in Current Scale</th>
+                    <th width="3%"></th>
+                    <th width="3%">100 % of Days </th>
+                    <th width="8%">Date of Appointment in Next Lower Scale</th>
+                    <th width="5%">Actual Length</th>
+                    <th width="3%"></th>
+                    <th width="3%">80 % of Days</th>
+                    <th width="8%">Date of Appointment in Next Lower Scale</th>
+                    <th width="5%">Actual Length</th>
+                    <th width="3%"></th>
+                    <th width="3%">60 % of Days</th>
+                    <th width="8%">Date of Appointment in Next Lower Scale</th>
+                    <th width="5%">Actual Length</th>
+                    <th width="3%"></th>
+                    <th width="3%">40 % of Days</th>
+                    <th width="8%">Date of Appointment in Next Lower Scale</th>
+                    <th width="5%">Actual Length</th>
+                    <th width="3%"></th>
+                    <th width="3%">25 % of Days</th>
+                    <th width="5%">Total Length of Service</th>
+                    <th width="3%">Merit No. in Day</th>
+                    <th width="5%">Contract / Regular</th>
+                    <th width="5%">Change or New</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var record in Model)
+                    {
+
+                <tr>
+                    <td></td>
+                    <td>@record.Name</td>
+                    <td>@record.Department.Name</td>
+                    <td>@record.ScaleNo.Id</td>
+                    <td>@record.CurrentScaleAppointmentDate</td>
+
+                    <td>
+                        @Html.ActionLink("Edit", "ViewDetail", "Place", new { cnic = record.CNIC }, null)
+                    </td>
+                </tr>
+                    }
+            </tbody>
+
+        </table>
+    </div>
+</body>
