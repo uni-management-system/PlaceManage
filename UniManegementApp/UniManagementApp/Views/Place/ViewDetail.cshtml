@@ -1,11 +1,12 @@
 ﻿@model UniManagementApp.entities.ViewModels.PlaceViewModel
 @{
-    ViewBag.Title = "HouseApply";
+    ViewBag.Title = "ViewDetail";
 }
 
-<head>
-    @*<script src="~/CustomContent/CustomJquery.js"></script>*@
-</head>
+@*<body>
+        <h2 align="center">Update Apply</h2>
+    <div class="mainContainer">*@
+
 
 <body>
     <h2 align="center">Apply for House</h2>
@@ -14,39 +15,27 @@
         @using (Html.BeginForm("HouseApply", "Place"))
         {
             <div>
-                @Html.HiddenFor(c => c.Places.HouseCategory, new { @class = "form-control", @Id = "houseCategoryId" })
+                @Html.TextBoxFor(c => c.Places.HouseCategory, new { @class = "form-control", @Id = "houseCategoryId" })
                 @Html.ValidationMessageFor(c => c.Places.HouseCategory)
             </div>
             <div class="row">
                 <div class="col-sm-3">
-                    
-                    
-
                     @Html.LabelFor(c => c.Places.ApplyForId)
-                    @Html.Label("ApplyForId", "Apply For")
-                    <label > Apply For</label>
-
-
-
-
-                    <label class="text-danger"> *</label>
-                    @Html.DropDownListFor(c => c.Places.ApplyForId, new SelectList(Model.ApplyFors, "Id", "Name"), "-select-", new {@class = "form-control", @Id = "applyForId", autofocus = "autofocus"})
+                    @Html.DropDownListFor(c => c.Places.ApplyForId, new SelectList(Model.ApplyFors, "Id", "Name"), "-select-", new { @class = "form-control", @Id = "applyForId", autofocus = "autofocus" })
                     @Html.ValidationMessageFor(c => c.Places.ApplyForId)
                 </div>
                 <div class="col-sm-3">
-                    @Html.LabelFor(c => c.Places.ScaleNoId)<label class="text-danger">*</label>
+                    @Html.LabelFor(c => c.Places.ScaleNoId)
                     @Html.DropDownListFor(c => c.Places.ScaleNoId, new SelectList(""), "-select-", new { @class = "form-control", @Id = "scaleId" })
                     @Html.ValidationMessageFor(c => c.Places.ScaleNoId)
                 </div>
                 <div class="col-sm-3">
-                    @Html.LabelFor(c => c.Places.DesignationId)<label class="text-danger">*</label>
-                    @Html.TextBoxFor(c => c.Places.DesignationId, new { @class = "form-control", autocomplete = "off" })
-
-                    @* @Html.DropDownListFor(c => c.Places.DesignationId, new SelectList(""), "-select-", new { @class = "form-control", @Id = "designationId" })*@
+                    @Html.LabelFor(c => c.Places.DesignationId)
+                    @Html.DropDownListFor(c => c.Places.DesignationId, new SelectList(""), "-select-", new { @class = "form-control", @Id = "designationId" })
                     @Html.ValidationMessageFor(c => c.Places.DesignationId)
                 </div>
                 <div class="col-sm-3">
-                    @Html.LabelFor(c => c.Places.Allotment)<label class="text-danger">*</label>
+                    @Html.LabelFor(c => c.Places.Allotment)
                     <div class="container">
                         @Html.RadioButtonFor(c => c.Places.Allotment, "New")New
                         @Html.RadioButtonFor(c => c.Places.Allotment, "Change")Change of Hourse
@@ -58,22 +47,22 @@
 
             <div class="row">
                 <div class="col-sm-3">
-                    @Html.LabelFor(c => c.Places.Reason)<label class="text-danger">*</label>
-                    @Html.TextBoxFor(c => c.Places.Reason, new { @class = "form-control", autocomplete = "off" })
+                    @Html.LabelFor(c => c.Places.Reason)
+                    @Html.TextBoxFor(c => c.Places.Reason, new { @class = "form-control" })
                     @Html.ValidationMessageFor(c => c.Places.Reason)
                 </div>
                 <div class="col-sm-3">
-                    @Html.LabelFor(c => c.Places.Name)<label class="text-danger">*</label>
-                    @Html.TextBoxFor(c => c.Places.Name, new { @class = "form-control", autocomplete = "off" })
+                    @Html.LabelFor(c => c.Places.Name)
+                    @Html.TextBoxFor(c => c.Places.Name, new { @class = "form-control" })
                     @Html.ValidationMessageFor(c => c.Places.Name)
                 </div>
                 <div class="col-sm-3">
-                    @Html.LabelFor(c => c.Places.CNIC)<label class="text-danger">*</label>
-                    @Html.TextBoxFor(c => c.Places.CNIC, new { @class = "form-control", @placeholder = "no special character.", autocomplete = "off" })
+                    @Html.LabelFor(c => c.Places.CNIC)
+                    @Html.TextBoxFor(c => c.Places.CNIC, new { @class = "form-control", @placeholder = "no special character." })
                     @Html.ValidationMessageFor(c => c.Places.CNIC)
                 </div>
                 <div class="col-sm-3">
-                    @Html.LabelFor(c => c.Places.DepartmentId)<label class="text-danger">*</label>
+                    @Html.LabelFor(c => c.Places.DepartmentId)
                     @Html.DropDownListFor(c => c.Places.DepartmentId, new SelectList(Model.Departments, "Id", "Name"), "-select-", new { @class = "form-control" })
                     @Html.ValidationMessageFor(c => c.Places.DepartmentId)
                 </div>
@@ -81,7 +70,7 @@
 
             <div class="row">
                 <div class="col-sm-3">
-                    @Html.LabelFor(c => c.Places.MaritalStatus)<label class="text-danger">*</label>
+                    @Html.LabelFor(c => c.Places.MaritalStatus)
                     <div class="container">
                         @Html.RadioButtonFor(c => c.Places.MaritalStatus, "New")<label>Single</label>
                         @Html.RadioButtonFor(c => c.Places.MaritalStatus, "Change")<label>married</label>
@@ -90,17 +79,17 @@
                 </div>
                 <div class="col-sm-3">
                     @Html.LabelFor(c => c.Places.NoOfDependent)
-                    @Html.TextBoxFor(c => c.Places.NoOfDependent, new { @class = "form-control", autocomplete = "off" })
+                    @Html.TextBoxFor(c => c.Places.NoOfDependent, new { @class = "form-control" })
                     @Html.ValidationMessageFor(c => c.Places.NoOfDependent)
                 </div>
                 <div class="col-sm-3">
-                    @Html.LabelFor(c => c.Places.DomicileId)<label class="text-danger">*</label>
+                    @Html.LabelFor(c => c.Places.DomicileId)
                     @Html.DropDownListFor(c => c.Places.DomicileId, new SelectList(Model.Domiciles, "Id", "Name"), "-select-", new { @class = "form-control" })
                     @Html.ValidationMessageFor(c => c.Places.DomicileId)
                 </div>
                 <div class="col-sm-3">
-                    @Html.LabelFor(c => c.Places.Address)<label class="text-danger">*</label>
-                    @Html.TextBoxFor(c => c.Places.Address, new { @class = "form-control", autocomplete = "off" })
+                    @Html.LabelFor(c => c.Places.Address)
+                    @Html.TextBoxFor(c => c.Places.Address, new { @class = "form-control" })
                     @Html.ValidationMessageFor(c => c.Places.Address)
                 </div>
             </div>
@@ -108,36 +97,36 @@
             <div class="row">
                 <div class="col-sm-3">
                     @Html.LabelFor(c => c.Places.PhoneNo)
-                    @Html.TextBoxFor(c => c.Places.PhoneNo, new { @class = "form-control", autocomplete = "off" })
+                    @Html.TextBoxFor(c => c.Places.PhoneNo, new { @class = "form-control" })
                 </div>
                 <div class="col-sm-3">
-                    @Html.LabelFor(c => c.Places.MobileNo)<label class="text-danger">*</label>
-                    @Html.TextBoxFor(c => c.Places.MobileNo, new { @class = "form-control", autocomplete = "off", @placeholder = "03000000000 e.g" })
+                    @Html.LabelFor(c => c.Places.MobileNo)
+                    @Html.TextBoxFor(c => c.Places.MobileNo, new { @class = "form-control", @placeholder = "03000000000 e.g" })
                     @Html.ValidationMessageFor(c => c.Places.MobileNo)
                 </div>
                 <div class="col-sm-3">
 
-                    @Html.LabelFor(c => c.Places.DOB)<label class="text-danger">*</label>
-                    @Html.TextBoxFor(c => c.Places.DOB, new { @class = "form-control", type = "date", autocomplete = "off" })
+                    @Html.LabelFor(c => c.Places.DOB)
+                    @Html.TextBoxFor(c => c.Places.DOB, new { @class = "form-control", type = "date" })
                     @Html.ValidationMessageFor(c => c.Places.DOB)
                 </div>
                 <div class="col-sm-3">
-                    @Html.LabelFor(c => c.Places.Age)<label class="text-danger">*</label>
-                    @Html.TextBoxFor(c => c.Places.Age, new { @class = "form-control", autocomplete = "off" })
+                    @Html.LabelFor(c => c.Places.Age)
+                    @Html.TextBoxFor(c => c.Places.Age, new { @class = "form-control" })
                     @Html.ValidationMessageFor(c => c.Places.Age)
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-sm-3">
-                    @Html.LabelFor(c => c.Places.StatusId)<label class="text-danger">*</label>
+                    @Html.LabelFor(c => c.Places.StatusId)
                     @Html.DropDownListFor(c => c.Places.StatusId, new SelectList(Model.Statuses, "Id", "Name"), "-select-", new { @class = "form-control" })
                     @Html.ValidationMessageFor(c => c.Places.StatusId)
                 </div>
 
                 <div class="col-sm-3">
-                    @Html.LabelFor(c => c.Places.AppointmentDate)<label class="text-danger">*</label>
-                    @Html.TextBoxFor(c => c.Places.AppointmentDate, new { @class = "form-control", autocomplete = "off", type = "date" })
+                    @Html.LabelFor(c => c.Places.AppointmentDate)
+                    @Html.TextBoxFor(c => c.Places.AppointmentDate, new { @class = "form-control", type = "date" })
                     @Html.ValidationMessageFor(c => c.Places.AppointmentDate)
                 </div>
                 <div class="col-sm-3">
@@ -162,7 +151,7 @@
                                 </label>
                             </div>
                             <div class="col-sm-9">
-                                @Html.TextBoxFor(c => c.Places.Loan, new { @class = "form-control", autocomplete = "off", @Id = "loanId" })
+                                @Html.TextBoxFor(c => c.Places.Loan, new { @class = "form-control", @Id = "loanId" })
                                 @Html.ValidationMessageFor(c => c.Places.Loan)
                             </div>
                         </div>
@@ -172,13 +161,26 @@
 
             <div class="row">
                 <div class="col-sm-4">
-                    @Html.LabelFor(c => c.Places.CurrentScaleAppointmentDate)<label class="text-danger">*</label>
-                    @Html.TextBoxFor(c => c.Places.CurrentScaleAppointmentDate, new { @class = "form-control", autocomplete = "off", type = "date", @Id = "date" })
+                    @Html.LabelFor(c => c.Places.CurrentScaleAppointmentDate)
+                    @Html.TextBoxFor(c => c.Places.CurrentScaleAppointmentDate, new { @class = "form-control", type = "date", @Id = "date" })
                     @Html.ValidationMessageFor(c => c.Places.CurrentScaleAppointmentDate)
                 </div>
                 <div class="col-sm-4">
+                    @Html.LabelFor(c => c.Places.CurrentScaleLength)
+                    @Html.TextBoxFor(c => c.Places.CurrentScaleLength, new { @class = "form-control", @placeholder = "in days", @Id = "day", @readonly = "readonly" })
+                    @Html.ValidationMessageFor(c => c.Places.CurrentScaleLength)
+                </div>
+                <div class="col-sm-4">
                     @Html.LabelFor(c => c.Places.ImmediateLowerScaleAppointmentDate)
-                    @Html.TextBoxFor(c => c.Places.ImmediateLowerScaleAppointmentDate, new { @class = "form-control", autocomplete = "off", type = "date", @Id = "date1" })
+                    @Html.TextBoxFor(c => c.Places.ImmediateLowerScaleAppointmentDate, new { @class = "form-control", type = "date", @Id = "date1" })
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-4">
+                    @Html.LabelFor(c => c.Places.ImmediateLowerScaleLength)
+                    @Html.TextBoxFor(c => c.Places.ImmediateLowerScaleLength, new { @class = "form-control", @placeholder = "in days", @Id = "day1", @readonly = "readonly" })
 
                 </div>
                 <div class="col-sm-4">
@@ -186,13 +188,22 @@
                     @Html.TextBoxFor(c => c.Places.NextLowerScaleAppointmentDate, new { @class = "form-control", type = "date", @Id = "date2" })
 
                 </div>
+                <div class="col-sm-4">
+                    @Html.LabelFor(c => c.Places.NextLowerScaleLength)
+                    @Html.TextBoxFor(c => c.Places.NextLowerScaleLength, new { @class = "form-control", @placeholder = "in days", @Id = "day2", @readonly = "readonly" })
+
+                </div>
             </div>
 
             <div class="row">
- 
                 <div class="col-sm-4">
                     @Html.LabelFor(c => c.Places.NextLowerScaleAppointmentDate1)
                     @Html.TextBoxFor(c => c.Places.NextLowerScaleAppointmentDate1, new { @class = "form-control", type = "date", @Id = "date3" })
+
+                </div>
+                <div class="col-sm-4">
+                    @Html.LabelFor(c => c.Places.NextLowerScaleLength1)
+                    @Html.TextBoxFor(c => c.Places.NextLowerScaleLength1, new { @class = "form-control", @placeholder = "in days", @Id = "day3", @readonly = "readonly" })
 
                 </div>
                 <div class="col-sm-4">
@@ -201,21 +212,28 @@
 
                 </div>
             </div>
-            @Html.HiddenFor(c => c.Places.CurrentScaleLength, new { @class = "form-control", autocomplete = "off", @placeholder = "in days", @Id = "day", @readonly = "readonly" })
-            @Html.ValidationMessageFor(c => c.Places.CurrentScaleLength)
-                
-            @Html.HiddenFor(c => c.Places.ImmediateLowerScaleLength, new { @class = "form-control", @placeholder = "in days", @Id = "day1", @readonly = "readonly" })
 
-            @Html.HiddenFor(c => c.Places.NextLowerScaleLength, new { @class = "form-control", @placeholder = "in days", @Id = "day2", @readonly = "readonly" })
+            <div class="row">
+                <div class="col-sm-4">
+                    @Html.LabelFor(c => c.Places.NextLowerScaleLength2)
+                    @Html.TextBoxFor(c => c.Places.NextLowerScaleLength2, new { @class = "form-control", @Id = "day4", @placeholder = "in days", @readonly = "readonly" })
 
-            @Html.HiddenFor(c => c.Places.NextLowerScaleLength2, new { @class = "form-control", @Id = "day4", @placeholder = "in days", @readonly = "readonly" })
+                </div>
+                <div class="col-sm-4">
+                    @Html.LabelFor(c => c.Places.NextLowerScaleAppointmentDate3)
+                    @Html.TextBoxFor(c => c.Places.NextLowerScaleAppointmentDate3, new { @class = "form-control", type = "date", @Id = "date5" })
 
-            @Html.HiddenFor(c => c.Places.NextLowerScaleLength1, new { @class = "form-control", @placeholder = "in days", @Id = "day3", @readonly = "readonly" })
+                </div>
+                <div class="col-sm-4">
+                    @Html.LabelFor(c => c.Places.NextLowerScaleLength3)
+                    @Html.TextBoxFor(c => c.Places.NextLowerScaleLength3, new { @class = "form-control", @Id = "day5", @placeholder = "in days", @readonly = "readonly" })
+                </div>
+            </div>
 
             @Html.HiddenFor(c => c.Places.ApplyDate, new { @Id = "applyDate", @Value = DateTime.Now.ToShortDateString() })
 
             <div style="margin-top:15px;" align="center">
-                <button type="submit" class="btn">Apply</button>
+                <button type="submit" class="btn">Update</button>
             </div>
 
         }
@@ -225,7 +243,6 @@
 </body>
 
 <script>
-
     $(document).ready(function () {
         $("#date").change(function () {
 
@@ -242,12 +259,12 @@
         });
 
         $("#date1").change(function () {
-            
+
             var date1 = $("#date").val();
-            var date2 = $("#date1").val();        
+            var date2 = $("#date1").val();
             $.ajax({
                 url: "/Place/GetDays?StartDate=" + date1 + "&&EndDate=" + date2,
-                
+
             }).done(function (response) {
                 $("#day1").val(response);
             }).fail(function (XMLHttpReuest, textStatus, errorThrown) {
@@ -260,7 +277,8 @@
             var date1 = $("#date1").val();
             var date2 = $("#date2").val();
             $.ajax({
-                url: "/Place/GetDays?StartDate=" + date1 + "&&EndDate=" + date2
+                url: "/Place/GetDays?StartDate=" + date1 + "&&EndDate=" + date2,
+
             }).done(function (response) {
                 $("#day2").val(response);
             }).fail(function (XMLHttpReuest, textStatus, errorThrown) {
@@ -273,7 +291,8 @@
             var date1 = $("#date2").val();
             var date2 = $("#date3").val();
             $.ajax({
-                url: "/Place/GetDays?StartDate=" + date1 + "&&EndDate=" + date2
+                url: "/Place/GetDays?StartDate=" + date1 + "&&EndDate=" + date2,
+
             }).done(function (response) {
                 $("#day3").val(response);
             }).fail(function (XMLHttpReuest, textStatus, errorThrown) {
@@ -286,37 +305,50 @@
             var date1 = $("#date3").val();
             var date2 = $("#date4").val();
             $.ajax({
-                url: "/Place/GetDays?StartDate=" + date1 + "&&EndDate=" + date2
+                url: "/Place/GetDays?StartDate=" + date1 + "&&EndDate=" + date2,
+
             }).done(function (response) {
                 $("#day4").val(response);
             }).fail(function (XMLHttpReuest, textStatus, errorThrown) {
                 alert("Fail")
             });
         });
-        
+
+        $("#date5").change(function () {
+
+            var date1 = $("#date4").val();
+            var date2 = $("#date5").val();
+            $.ajax({
+                url: "/Place/GetDays?StartDate=" + date1 + "&&EndDate=" + date2,
+
+            }).done(function (response) {
+                $("#day5").val(response);
+            }).fail(function (XMLHttpReuest, textStatus, errorThrown) {
+                alert("Fail")
+            });
+        });
+
         $("#applyForId").change(function () {
             var applyForId = $("#applyForId").val();
-            if (applyForId != null && applyForId!="") {
-                $.ajax({
-                    method: "GET",
-                    url: "/Place/GetScales?id=" + applyForId,
-                }).done(function (response) {
-                    $("#scaleId").empty();
-                
-                    debugger;
-                    $.each(response, function (i, item) {
-                        $('<option value="' + item.Id + '">' + item.ScaleNum + '</option>').appendTo('#scaleId');
-                    });
-                    $("#scaleId").prop('selectedIndex', -1);
-                }).fail(function (XMLHttpReuest, textStatus, errorThrown) {
-                    alert("Fail")
+            $.ajax({
+                method: "GET",
+                url: "/Place/GetScales?id=" + applyForId,
+            }).done(function (response) {
+                $("#scaleId").empty();
+                $("#scaleId").html("-select-");
+                debugger;
+                $.each(response, function (i, item) {
+                    $('<option value="' + item.Id + '">' + item.ScaleNum + '</option>').appendTo('#scaleId');
                 });
-            }
+            }).fail(function (XMLHttpReuest, textStatus, errorThrown) {
+                alert("Fail")
+            });
         });
 
 
         $("#scaleId").change(function () {
             var scaleId = $("#scaleId").val();
+            debugger;
             if (scaleId == 1 || scaleId == 2 || scaleId == 3 || scaleId == 4) {
                 $("#houseCategoryId").val("F");
             } if (scaleId == 5 || scaleId == 6 || scaleId == 7 || scaleId == 8 || scaleId == 9 || scaleId == 10) {
@@ -331,19 +363,18 @@
                 $("#houseCategoryId").val("A");
             }
 
-            //$.ajax({
-            //    method: "GET",
-            //    url: "/Place/GetJobTitle?id=" + scaleId,
-            //}).done(function (response) {
-            //    $("#designationId").empty();
-            //    $("#designationId").html("-select-");
-            //    $.each(response, function (i, item) {
-            //        $('<option value="' + item.Id + '">' + item.ScaleName + '</option>').appendTo('#designationId');
-            //    });
-            //    $("#designationId").prop('selectedIndex', -1);
-            //}).fail(function (XMLHttpReuest, textStatus, errorThrown) {
-            //    alert("Fail")
-            //});
+            $.ajax({
+                method: "GET",
+                url: "/Place/GetJobTitle?id=" + scaleId,
+            }).done(function (response) {
+                $("#designationId").empty();
+                $("#designationId").html("-select-");
+                $.each(response, function (i, item) {
+                    $('<option value="' + item.Id + '">' + item.ScaleName + '</option>').appendTo('#designationId');
+                });
+            }).fail(function (XMLHttpReuest, textStatus, errorThrown) {
+                alert("Fail")
+            });
         });
     });
 </script>

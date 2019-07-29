@@ -33,22 +33,20 @@ namespace UniManagementApp.entities
         public string Reason { get; set; }
 
         [Required]
+        [StringLength(30,ErrorMessage = "Max length is 30 Characters")]
+        [RegularExpression(@"^[A-Za-z][A-Za-z\'\-]+([\ A-Za-z][A-Za-z\'\-]+)*", ErrorMessage = "Only -,'and single space allow.")]
         public string Name { get; set; }
 
         [Required]  
-        [MaxLength(13, ErrorMessage = "Invalide CNIC"),
-         MinLength(13, ErrorMessage = "Invalide CNIC")]
+        //[MaxLength(15, ErrorMessage = "Invalide CNIC"),
+        // MinLength(15, ErrorMessage = "Invalide CNIC")]
+        [RegularExpression(@"^[0-9+]{5}-[0-9+]{7}-[0-9]{1}$",ErrorMessage = "Invalid CNIC no.")]
         public string CNIC { get; set; }
 
         [Required]
         //A,B,C.....
         public string HouseCategory { get; set; }
-
-
-        //[Required]
-        //[DisplayName("Job Status")]
-        //public int DesignationId { get; set; }
-
+        
         public Department Department { get; set; }
 
         [Required]
@@ -60,6 +58,7 @@ namespace UniManagementApp.entities
         public string MaritalStatus { get; set; }
         
         [DisplayName("No of Dependent")]
+        [RegularExpression(@"^[0-9+]{1,2}$", ErrorMessage = "Only integer value.")]
         public string NoOfDependent { get; set; }
 
         public Domicile Domicile { get; set; }
@@ -76,8 +75,9 @@ namespace UniManagementApp.entities
 
         [Required]
         [DisplayName("Mobile No")]
-        [MaxLength(11, ErrorMessage = "Invalide Mobile number"), 
-         MinLength(11,ErrorMessage = "Invalide Mobile number")]
+        //[MaxLength(11, ErrorMessage = "Invalide Mobile number"), 
+        // MinLength(11,ErrorMessage = "Invalide Mobile number")]
+        [RegularExpression(@"^((\+92)|(0092))-{0,1}\d{3}-{0,1}\d{7}$|^\d{11}$|^\d{4}-\d{7}$", ErrorMessage = "Invalid mobile no.")]
         public string MobileNo { get; set; }
 
         [Required]
@@ -86,6 +86,8 @@ namespace UniManagementApp.entities
         public DateTime DOB { get; set; }
 
         [Required]
+        [Range(20,60)]
+        [RegularExpression(@"^[0-9]{1,2}?$", ErrorMessage = "You can use only two digits.")]
         public string Age { get; set; }
 
         public Status Status { get; set; }
@@ -116,41 +118,33 @@ namespace UniManagementApp.entities
         
         [DisplayName("Immediate Lower Scale Appointment Date")]
         [DataType(DataType.Date)]
-        public DateTime ImmediateLowerScaleAppointmentDate { get; set; }
+        public Nullable<DateTime> ImmediateLowerScaleAppointmentDate { get; set; }
         
         [DisplayName("Immediate Lower Scale Length")]
         public string ImmediateLowerScaleLength { get; set; }
         
         [DisplayName("Next Lower Scale Appointment Date")]
         [DataType(DataType.Date)]
-        public DateTime NextLowerScaleAppointmentDate { get; set; }
+        public Nullable<DateTime> NextLowerScaleAppointmentDate { get; set; }
         
         [DisplayName("Next Lower Scale Length")]
         public string NextLowerScaleLength { get; set; }
         
         [DisplayName("Next Lower Scale Appointment Date")]
         [DataType(DataType.Date)]
-        public DateTime NextLowerScaleAppointmentDate1 { get; set; }
+        public Nullable<DateTime> NextLowerScaleAppointmentDate1 { get; set; }
         
         [DisplayName("Next Lower Scale Length")]
         public string NextLowerScaleLength1 { get; set; }
         
         [DisplayName("Next Lower Scale Appointment Date")]
         [DataType(DataType.Date)]
-        public DateTime NextLowerScaleAppointmentDate2 { get; set; }
+        public Nullable<DateTime> NextLowerScaleAppointmentDate2 { get; set; }
         
         [DisplayName("Next Lower Scale Length")]
         public string NextLowerScaleLength2 { get; set; }
-        
-        [DisplayName("Next Lower Scale Appointment Date")]
-        [DataType(DataType.Date)]
-        public DateTime NextLowerScaleAppointmentDate3 { get; set; }
-        
-        [DisplayName("Next Lower Scale Length")]
-        public string NextLowerScaleLength3 { get; set; }
-
 
         [DataType(DataType.Date)]
-        public DateTime ApplyDate { get; set; }
+        public Nullable<DateTime> ApplyDate { get; set; }
     }
 }

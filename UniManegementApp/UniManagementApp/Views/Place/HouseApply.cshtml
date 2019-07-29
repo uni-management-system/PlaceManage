@@ -1,6 +1,7 @@
 ﻿@model UniManagementApp.entities.ViewModels.PlaceViewModel
 @{
     ViewBag.Title = "HouseApply";
+
 }
 
 <head>
@@ -19,18 +20,9 @@
             </div>
             <div class="row">
                 <div class="col-sm-3">
-                    
-                    
-
                     @Html.LabelFor(c => c.Places.ApplyForId)
-                    @Html.Label("ApplyForId", "Apply For")
-                    <label > Apply For</label>
-
-
-
-
                     <label class="text-danger"> *</label>
-                    @Html.DropDownListFor(c => c.Places.ApplyForId, new SelectList(Model.ApplyFors, "Id", "Name"), "-select-", new {@class = "form-control", @Id = "applyForId", autofocus = "autofocus"})
+                    @Html.DropDownListFor(c => c.Places.ApplyForId, new SelectList(Model.ApplyFors, "Id", "Name"), "-select-", new { @class = "form-control", @Id = "applyForId", autofocus = "autofocus" })
                     @Html.ValidationMessageFor(c => c.Places.ApplyForId)
                 </div>
                 <div class="col-sm-3">
@@ -41,8 +33,6 @@
                 <div class="col-sm-3">
                     @Html.LabelFor(c => c.Places.DesignationId)<label class="text-danger">*</label>
                     @Html.TextBoxFor(c => c.Places.DesignationId, new { @class = "form-control", autocomplete = "off" })
-
-                    @* @Html.DropDownListFor(c => c.Places.DesignationId, new SelectList(""), "-select-", new { @class = "form-control", @Id = "designationId" })*@
                     @Html.ValidationMessageFor(c => c.Places.DesignationId)
                 </div>
                 <div class="col-sm-3">
@@ -50,8 +40,8 @@
                     <div class="container">
                         @Html.RadioButtonFor(c => c.Places.Allotment, "New")New
                         @Html.RadioButtonFor(c => c.Places.Allotment, "Change")Change of Hourse
-                        @Html.ValidationMessageFor(c => c.Places.Allotment)
                     </div>
+                    @Html.ValidationMessageFor(c => c.Places.Allotment)
                 </div>
 
             </div>
@@ -69,7 +59,7 @@
                 </div>
                 <div class="col-sm-3">
                     @Html.LabelFor(c => c.Places.CNIC)<label class="text-danger">*</label>
-                    @Html.TextBoxFor(c => c.Places.CNIC, new { @class = "form-control", @placeholder = "no special character.", autocomplete = "off" })
+                    @Html.TextBoxFor(c => c.Places.CNIC, new { @class = "form-control", @placeholder = "00000-0000000-0", autocomplete = "off" })
                     @Html.ValidationMessageFor(c => c.Places.CNIC)
                 </div>
                 <div class="col-sm-3">
@@ -85,8 +75,8 @@
                     <div class="container">
                         @Html.RadioButtonFor(c => c.Places.MaritalStatus, "New")<label>Single</label>
                         @Html.RadioButtonFor(c => c.Places.MaritalStatus, "Change")<label>married</label>
-                        @Html.ValidationMessageFor(c => c.Places.MaritalStatus)
                     </div>
+                    @Html.ValidationMessageFor(c => c.Places.MaritalStatus)
                 </div>
                 <div class="col-sm-3">
                     @Html.LabelFor(c => c.Places.NoOfDependent)
@@ -112,7 +102,7 @@
                 </div>
                 <div class="col-sm-3">
                     @Html.LabelFor(c => c.Places.MobileNo)<label class="text-danger">*</label>
-                    @Html.TextBoxFor(c => c.Places.MobileNo, new { @class = "form-control", autocomplete = "off", @placeholder = "03000000000 e.g" })
+                    @Html.TextBoxFor(c => c.Places.MobileNo, new { @class = "form-control", autocomplete = "off" })
                     @Html.ValidationMessageFor(c => c.Places.MobileNo)
                 </div>
                 <div class="col-sm-3">
@@ -189,7 +179,7 @@
             </div>
 
             <div class="row">
- 
+
                 <div class="col-sm-4">
                     @Html.LabelFor(c => c.Places.NextLowerScaleAppointmentDate1)
                     @Html.TextBoxFor(c => c.Places.NextLowerScaleAppointmentDate1, new { @class = "form-control", type = "date", @Id = "date3" })
@@ -203,7 +193,7 @@
             </div>
             @Html.HiddenFor(c => c.Places.CurrentScaleLength, new { @class = "form-control", autocomplete = "off", @placeholder = "in days", @Id = "day", @readonly = "readonly" })
             @Html.ValidationMessageFor(c => c.Places.CurrentScaleLength)
-                
+
             @Html.HiddenFor(c => c.Places.ImmediateLowerScaleLength, new { @class = "form-control", @placeholder = "in days", @Id = "day1", @readonly = "readonly" })
 
             @Html.HiddenFor(c => c.Places.NextLowerScaleLength, new { @class = "form-control", @placeholder = "in days", @Id = "day2", @readonly = "readonly" })
@@ -223,127 +213,130 @@
     </div>
 
 </body>
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
 
-<script>
+    <script>
 
-    $(document).ready(function () {
-        $("#date").change(function () {
+        $(document).ready(function () {
+            $("#date").change(function () {
 
-            var date1 = $("#applyDate").val();
-            var date2 = $("#date").val();
-            $.ajax({
-                url: "/Place/GetDays?StartDate=" + date1 + "&&EndDate=" + date2,
-
-            }).done(function (response) {
-                $("#day").val(response);
-            }).fail(function (XMLHttpReuest, textStatus, errorThrown) {
-                alert("Fail")
-            });
-        });
-
-        $("#date1").change(function () {
-            
-            var date1 = $("#date").val();
-            var date2 = $("#date1").val();        
-            $.ajax({
-                url: "/Place/GetDays?StartDate=" + date1 + "&&EndDate=" + date2,
-                
-            }).done(function (response) {
-                $("#day1").val(response);
-            }).fail(function (XMLHttpReuest, textStatus, errorThrown) {
-                alert("Fail")
-            });
-        });
-
-        $("#date2").change(function () {
-
-            var date1 = $("#date1").val();
-            var date2 = $("#date2").val();
-            $.ajax({
-                url: "/Place/GetDays?StartDate=" + date1 + "&&EndDate=" + date2
-            }).done(function (response) {
-                $("#day2").val(response);
-            }).fail(function (XMLHttpReuest, textStatus, errorThrown) {
-                alert("Fail")
-            });
-        });
-
-        $("#date3").change(function () {
-
-            var date1 = $("#date2").val();
-            var date2 = $("#date3").val();
-            $.ajax({
-                url: "/Place/GetDays?StartDate=" + date1 + "&&EndDate=" + date2
-            }).done(function (response) {
-                $("#day3").val(response);
-            }).fail(function (XMLHttpReuest, textStatus, errorThrown) {
-                alert("Fail")
-            });
-        });
-
-        $("#date4").change(function () {
-
-            var date1 = $("#date3").val();
-            var date2 = $("#date4").val();
-            $.ajax({
-                url: "/Place/GetDays?StartDate=" + date1 + "&&EndDate=" + date2
-            }).done(function (response) {
-                $("#day4").val(response);
-            }).fail(function (XMLHttpReuest, textStatus, errorThrown) {
-                alert("Fail")
-            });
-        });
-        
-        $("#applyForId").change(function () {
-            var applyForId = $("#applyForId").val();
-            if (applyForId != null && applyForId!="") {
+                var date1 = $("#applyDate").val();
+                var date2 = $("#date").val();
                 $.ajax({
-                    method: "GET",
-                    url: "/Place/GetScales?id=" + applyForId,
+                    url: "/Place/GetDays?StartDate=" + date1 + "&&EndDate=" + date2,
+
                 }).done(function (response) {
-                    $("#scaleId").empty();
-                
-                    debugger;
-                    $.each(response, function (i, item) {
-                        $('<option value="' + item.Id + '">' + item.ScaleNum + '</option>').appendTo('#scaleId');
-                    });
-                    $("#scaleId").prop('selectedIndex', -1);
+                    $("#day").val(response);
                 }).fail(function (XMLHttpReuest, textStatus, errorThrown) {
                     alert("Fail")
                 });
-            }
+            });
+
+            $("#date1").change(function () {
+
+                var date1 = $("#date").val();
+                var date2 = $("#date1").val();
+                $.ajax({
+                    url: "/Place/GetDays?StartDate=" + date1 + "&&EndDate=" + date2,
+
+                }).done(function (response) {
+                    $("#day1").val(response);
+                }).fail(function (XMLHttpReuest, textStatus, errorThrown) {
+                    alert("Fail")
+                });
+            });
+
+            $("#date2").change(function () {
+
+                var date1 = $("#date1").val();
+                var date2 = $("#date2").val();
+                $.ajax({
+                    url: "/Place/GetDays?StartDate=" + date1 + "&&EndDate=" + date2
+                }).done(function (response) {
+                    $("#day2").val(response);
+                }).fail(function (XMLHttpReuest, textStatus, errorThrown) {
+                    alert("Fail")
+                });
+            });
+
+            $("#date3").change(function () {
+
+                var date1 = $("#date2").val();
+                var date2 = $("#date3").val();
+                $.ajax({
+                    url: "/Place/GetDays?StartDate=" + date1 + "&&EndDate=" + date2
+                }).done(function (response) {
+                    $("#day3").val(response);
+                }).fail(function (XMLHttpReuest, textStatus, errorThrown) {
+                    alert("Fail")
+                });
+            });
+
+            $("#date4").change(function () {
+
+                var date1 = $("#date3").val();
+                var date2 = $("#date4").val();
+                $.ajax({
+                    url: "/Place/GetDays?StartDate=" + date1 + "&&EndDate=" + date2
+                }).done(function (response) {
+                    $("#day4").val(response);
+                }).fail(function (XMLHttpReuest, textStatus, errorThrown) {
+                    alert("Fail")
+                });
+            });
+
+            $("#applyForId").change(function () {
+                var applyForId = $("#applyForId").val();
+                if (applyForId != null && applyForId != "") {
+                    $.ajax({
+                        method: "GET",
+                        url: "/Place/GetScales?id=" + applyForId,
+                    }).done(function (response) {
+                        $("#scaleId").empty();
+
+                        debugger;
+                        $.each(response, function (i, item) {
+                            $('<option value="' + item.Id + '">' + item.ScaleNum + '</option>').appendTo('#scaleId');
+                        });
+                        $("#scaleId").prop('selectedIndex', -1);
+                    }).fail(function (XMLHttpReuest, textStatus, errorThrown) {
+                        alert("Fail")
+                    });
+                }
+            });
+
+
+            $("#scaleId").change(function () {
+                var scaleId = $("#scaleId").val();
+                if (scaleId == 1 || scaleId == 2 || scaleId == 3 || scaleId == 4) {
+                    $("#houseCategoryId").val("F");
+                } if (scaleId == 5 || scaleId == 6 || scaleId == 7 || scaleId == 8 || scaleId == 9 || scaleId == 10) {
+                    $("#houseCategoryId").val("E");
+                } if (scaleId == 11 || scaleId == 12 || scaleId == 13 || scaleId == 14 || scaleId == 15) {
+                    $("#houseCategoryId").val("D");
+                } if (scaleId == 16 || scaleId == 17) {
+                    $("#houseCategoryId").val("C");
+                } if (scaleId == 18 || scaleId == 19) {
+                    $("#houseCategoryId").val("B");
+                } if (scaleId == 20 || scaleId == 21 || scaleId == 22) {
+                    $("#houseCategoryId").val("A");
+                }
+
+                //$.ajax({
+                //    method: "GET",
+                //    url: "/Place/GetJobTitle?id=" + scaleId,
+                //}).done(function (response) {
+                //    $("#designationId").empty();
+                //    $("#designationId").html("-select-");
+                //    $.each(response, function (i, item) {
+                //        $('<option value="' + item.Id + '">' + item.ScaleName + '</option>').appendTo('#designationId');
+                //    });
+                //    $("#designationId").prop('selectedIndex', -1);
+                //}).fail(function (XMLHttpReuest, textStatus, errorThrown) {
+                //    alert("Fail")
+                //});
+            });
         });
-
-
-        $("#scaleId").change(function () {
-            var scaleId = $("#scaleId").val();
-            if (scaleId == 1 || scaleId == 2 || scaleId == 3 || scaleId == 4) {
-                $("#houseCategoryId").val("F");
-            } if (scaleId == 5 || scaleId == 6 || scaleId == 7 || scaleId == 8 || scaleId == 9 || scaleId == 10) {
-                $("#houseCategoryId").val("E");
-            } if (scaleId == 11 || scaleId == 12 || scaleId == 13 || scaleId == 14 || scaleId == 15) {
-                $("#houseCategoryId").val("D");
-            } if (scaleId == 16 || scaleId == 17) {
-                $("#houseCategoryId").val("C");
-            } if (scaleId == 18 || scaleId == 19) {
-                $("#houseCategoryId").val("B");
-            } if (scaleId == 20 || scaleId == 21 || scaleId == 22) {
-                $("#houseCategoryId").val("A");
-            }
-
-            //$.ajax({
-            //    method: "GET",
-            //    url: "/Place/GetJobTitle?id=" + scaleId,
-            //}).done(function (response) {
-            //    $("#designationId").empty();
-            //    $("#designationId").html("-select-");
-            //    $.each(response, function (i, item) {
-            //        $('<option value="' + item.Id + '">' + item.ScaleName + '</option>').appendTo('#designationId');
-            //    });
-            //    $("#designationId").prop('selectedIndex', -1);
-            //}).fail(function (XMLHttpReuest, textStatus, errorThrown) {
-            //    alert("Fail")
-            //});
-        });
-    });
-</script>
+    </script>
+}
