@@ -37,10 +37,8 @@ namespace UniManagementApp.entities
         [RegularExpression(@"^[A-Za-z][A-Za-z\'\-]+([\ A-Za-z][A-Za-z\'\-]+)*", ErrorMessage = "Only -,'and single space allow.")]
         public string Name { get; set; }
 
-        [Required]  
-        //[MaxLength(15, ErrorMessage = "Invalide CNIC"),
-        // MinLength(15, ErrorMessage = "Invalide CNIC")]
-        [RegularExpression(@"^[0-9+]{5}-[0-9+]{7}-[0-9]{1}$",ErrorMessage = "Invalid CNIC no.")]
+        [Required]
+        //[RegularExpression(@"^[0-9+]{5}-[0-9+]{7}-[0-9]{1}$",ErrorMessage = "Invalid CNIC no.")]
         public string CNIC { get; set; }
 
         [Required]
@@ -77,7 +75,7 @@ namespace UniManagementApp.entities
         [DisplayName("Mobile No")]
         //[MaxLength(11, ErrorMessage = "Invalide Mobile number"), 
         // MinLength(11,ErrorMessage = "Invalide Mobile number")]
-        [RegularExpression(@"^((\+92)|(0092))-{0,1}\d{3}-{0,1}\d{7}$|^\d{11}$|^\d{4}-\d{7}$", ErrorMessage = "Invalid mobile no.")]
+        //[RegularExpression(@"^((\+92)|(0092))-{0,1}\d{3}-{0,1}\d{7}$|^\d{11}$|^\d{4}-\d{7}$", ErrorMessage = "Invalid mobile no.")]
         public string MobileNo { get; set; }
 
         [Required]

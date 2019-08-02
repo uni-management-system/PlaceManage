@@ -35,7 +35,7 @@ namespace UniManagementApp.service
                 }
                 else
                 {
-                    var scale= context.ScaleNos.OrderBy(c => c.ScaleNum).Skip(17).Take(21).ToList();
+                    var scale= context.ScaleNos.OrderBy(c => c.ScaleNum).Skip(16).Take(21).ToList();
                     return scale;
                 }
                 

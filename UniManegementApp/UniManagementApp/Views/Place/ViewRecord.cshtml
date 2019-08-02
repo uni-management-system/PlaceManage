@@ -6,9 +6,9 @@
 
 <h2>View House Apply</h2>
 
-<body>
-    <div class="mainContainer">
-        <table class="table">
+@*<body>*@
+    <div align="center" class="mainContainer">
+        <table class="table table-bordered">
             <thead>
                 <tr>
                     <th>CNIC</th>
@@ -22,8 +22,9 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var record in Model)
-                {
+
+            @foreach (var record in Model)
+            {
                 <tr>
 
                     <td>@record.CNIC</td>
@@ -34,11 +35,11 @@
                     <td>@record.MobileNo</td>
                     <td>@record.Status.Name</td>
                     <td>
-                        @Html.ActionLink("Edit", "ViewDetail", "Place", new { cnic = record.CNIC }, null)
+                        @Html.ActionLink("Edit", "ViewDetail", "Place", new {cnic = record.CNIC}, null)
                     </td>
                 </tr>
-                }
+            }
             </tbody>
         </table>
     </div>
-</body>
+@*</body>*@

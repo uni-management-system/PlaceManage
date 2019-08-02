@@ -25,7 +25,7 @@ namespace UniManagementApp.web.Controllers
             
             return View(viewModel);
         }
-        
+
         [HttpPost]
         public ActionResult HouseApply(PlaceViewModel model)
         {
